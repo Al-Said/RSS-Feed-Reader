@@ -1,0 +1,33 @@
+[
+    {
+        "title": "Life Hacker",
+        "description": "Life hacks daily",
+        "image": "https://cdn.iconscout.com/icon/free/png-256/lifehacker-1-461813.png",
+        "link": "https://lifehacker.com/rss"
+    },
+    {
+        "title": "NY Times World",
+        "description": "NY Times World News",
+        "image": "https://images-na.ssl-images-amazon.com/images/I/41AD72RCzmL.png",
+        "link": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+    },
+    {
+        "title": "Index.hr Science",
+        "description": "Index.hr science news in Crotian",
+        "image": "https://www.eurotopics.net/cache/images/5/204755-medium_logo-teaser300.png?367BC",
+
+        "link": "https://www.index.hr/rss/vijesti-znanost",
+    },
+    {
+        "title": "Fox Sports NBA",
+        "description": "Fox sports NBA news",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/FOX_Sports_logo.svg/1280px-FOX_Sports_logo.svg.png",
+        "link": "https://api.foxsports.com/v2/content/optimized-rss?partnerKey=MB0Wehpmuj2lUhuRhQaafhBjAJqaPU244mlTDK1i&size=30&tags=fs/nba",
+    },
+    {
+        "title": "NASA",
+        "description": "Nasa breaking news",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/2449px-NASA_logo.svg.png",
+        "link": "https://www.nasa.gov/rss/dyn/breaking_news.rss"
+    }
+]

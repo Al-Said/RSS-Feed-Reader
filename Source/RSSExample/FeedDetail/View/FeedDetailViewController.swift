@@ -15,10 +15,10 @@ class FeedDetailViewController: UIViewController {
     
     private lazy var feedTable = addTable()
     private lazy var refreshControl = UIRefreshControl()
-    let viewModel: FeedDetailViewModel!
+    let viewModel: IFeedDetailViewModel!
     let disposeBag = DisposeBag()
     
-    init(viewModel: FeedDetailViewModel) {
+    init(viewModel: IFeedDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }

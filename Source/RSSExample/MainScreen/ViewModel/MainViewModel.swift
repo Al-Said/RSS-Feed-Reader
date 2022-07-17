@@ -8,7 +8,16 @@
 import UIKit
 import RxSwift
 
-class MainViewModel: NSObject {
+protocol IMainViewModel {
+    
+    var title: String { get }
+    func fetchData() -> Observable<[MainModel]>
+    func configureCell(_ cell: MainTableViewCell, with item: MainModel)
+    func getViewModel(_ item: MainModel) -> IFeedDetailViewModel
+    
+}
+
+class MainViewModel: IMainViewModel {
 
     var title: String = NSLocalizedString("main", comment: "").capitalized
     
@@ -33,7 +42,7 @@ class MainViewModel: NSObject {
         cell.configureCell(with: item)
     }
     
-    func getViewModel(_ item: MainModel) -> FeedDetailViewModel {
+    func getViewModel(_ item: MainModel) -> IFeedDetailViewModel {
         guard let url = URL(string: item.link) else {
             return FeedDetailViewModel()
         }

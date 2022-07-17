@@ -9,18 +9,27 @@ import UIKit
 import FeedKit
 import RxSwift
 
-class FeedDetailViewModel: NSObject {
-   
+protocol IFeedDetailViewModel {
+    var items: Observable<[RSSFeedItem]>! { get }
+    var title: String { get set }
+    func fetchData() -> Observable<[RSSFeedItem]>
+    func configureCell(_ cell: FeedTableViewCell, with item: RSSFeedItem)
+    func reloadItems()
+    func itemSelected(_ item: RSSFeedItem)
+    init(feedUrl: URL, title: String)
+}
+
+class FeedDetailViewModel: NSObject, IFeedDetailViewModel {
     private var parser: FeedParser!
     private var rssFeed: RSSFeed?
-    var items: Observable<[RSSFeedItem]>!
     var title: String = ""
-    
+    var items: Observable<[RSSFeedItem]>!
+
     override init() {
         super.init()
     }
     
-    init(feedUrl: URL, title: String) {
+    required init(feedUrl: URL, title: String) {
         super.init()
         //check cache if it's empty get data
         self.title = title

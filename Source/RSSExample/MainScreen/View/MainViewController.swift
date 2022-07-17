@@ -10,7 +10,7 @@ import RxSwift
 
 class MainViewController: UIViewController {
 
-    private let viewModel = MainViewModel()
+    private let viewModel: IMainViewModel = MainViewModel()
     private let disposeBag = DisposeBag()
     private lazy var rssTable = initTable()
 

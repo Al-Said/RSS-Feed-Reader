@@ -13,9 +13,9 @@ import RxCocoa
 
 class FeedDetailViewController: UIViewController {
     
-    var feedTable: UITableView!
-    let refreshControl = UIRefreshControl()
-    var viewModel: FeedDetailViewModel! = FeedDetailViewModel()
+    private lazy var feedTable = addTable()
+    private lazy var refreshControl = UIRefreshControl()
+    let viewModel: FeedDetailViewModel!
     let disposeBag = DisposeBag()
     
     init(viewModel: FeedDetailViewModel) {
@@ -30,24 +30,31 @@ class FeedDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = viewModel.title
-        addTable()
+        bind()
     }
     
-    func addTable() {
-        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
-        feedTable = UITableView(frame: self.view.bounds)
-        feedTable.register(FeedTableViewCell.self, forCellReuseIdentifier: "Cell")
+    func addTable() -> UITableView {
+        var table = UITableView()
+        refreshControl.addTarget(self, action: #selector(reloadItems), for: .valueChanged)
+        table = UITableView(frame: self.view.bounds)
+        table.register(FeedTableViewCell.self, forCellReuseIdentifier: "Cell")
 
-        view.addSubview(feedTable)
-        feedTable.addSubview(refreshControl)
-        feedTable.snp.makeConstraints { make in
+        view.addSubview(table)
+        table.addSubview(refreshControl)
+        table.snp.makeConstraints { make in
             make.size.equalToSuperview()
             make.center.equalToSuperview()
         }
-
+        
+        return table
+    }
+    
+    func bind() {
         viewModel.fetchData().bind(to: feedTable.rx.items(cellIdentifier: "Cell")) {
-            row, item, cell in
-            (cell as! FeedTableViewCell).configureCell(item, imageURL: URL(string: (item.description ?? "").getImageUrlStr()))
+            [weak self] row, item, cell in
+            if let cell = cell as? FeedTableViewCell {
+                self?.viewModel.configureCell(cell, with: item)
+            }
         }.disposed(by: disposeBag)
 
         feedTable.rx.modelSelected(RSSFeedItem.self).bind { [weak self] rssFeedItem in
@@ -56,10 +63,9 @@ class FeedDetailViewController: UIViewController {
         .disposed(by: disposeBag)
     }
     
-    @objc func refreshTable() {
-        viewModel.refreshTable()
+    @objc func reloadItems() {
+        viewModel.reloadItems()
         refreshControl.endRefreshing()
-
         if refreshControl.isRefreshing { refreshControl.endRefreshing() }
     }
 }

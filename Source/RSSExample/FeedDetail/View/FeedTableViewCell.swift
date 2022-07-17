@@ -12,10 +12,10 @@ import Kingfisher
 
 class FeedTableViewCell: UITableViewCell {
     
-    private var feedTitle: UILabel!
-    private var feedDescription: UILabel!
-    private var feedImageView: UIImageView!
-    private var feedStack: UIStackView!
+    private lazy var feedTitle = UILabel()
+    private lazy var feedDescription = UILabel()
+    private lazy var feedImageView = UIImageView()
+    private lazy var feedStack = initFeedStack()
     
     var model: RSSFeedItem! = nil
     
@@ -36,16 +36,17 @@ class FeedTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func initFeedStack() -> UIStackView {
+        let stackView = UIStackView(arrangedSubviews: [feedTitle, feedDescription, feedImageView])
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.spacing = 8
+        return stackView
+    }
+    
     func setupUI() {
-        feedTitle = UILabel()
-        feedDescription = UILabel()
-        feedImageView = UIImageView()
-        feedStack = UIStackView(arrangedSubviews: [feedTitle, feedDescription, feedImageView])
-        feedStack.axis = .vertical
-        feedStack.alignment = .fill
-        feedStack.spacing = 8
+    
         addSubview(feedStack)
-        
 
         feedStack.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(16)

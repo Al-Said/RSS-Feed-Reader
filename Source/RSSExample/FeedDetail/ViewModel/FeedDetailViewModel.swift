@@ -46,7 +46,11 @@ class FeedDetailViewModel: NSObject {
         }
     }
     
-    func refreshTable() {
+    func configureCell(_ cell: FeedTableViewCell, with item: RSSFeedItem) {
+        cell.configureCell(item, imageURL: URL(string: (item.description ?? "").getImageUrlStr()))
+    }
+    
+    func reloadItems() {
         self.items = fetchData()
     }
     

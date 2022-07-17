@@ -12,35 +12,45 @@ class MainViewController: UIViewController {
 
     private let viewModel = MainViewModel()
     private let disposeBag = DisposeBag()
-    private var optionsTableView: UITableView!
+    private lazy var rssTable = initTable()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         addTable()
+        bind()
     }
 
     func setupUI() {
         self.navigationItem.title = viewModel.title
     }
     
+    func initTable() -> UITableView {
+        let table = UITableView()
+        table.delegate = self
+        table.register(MainTableViewCell.self, forCellReuseIdentifier: "Cell")
+        return table
+    }
+    
     func addTable() {
-        optionsTableView = UITableView()
-        optionsTableView.delegate = self
-        optionsTableView.register(MainTableViewCell.self, forCellReuseIdentifier: "Cell")
-
-        view.addSubview(optionsTableView)
-        optionsTableView.snp.makeConstraints { make in
+        view.addSubview(rssTable)
+        rssTable.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
-        viewModel.fetchData().bind(to: optionsTableView.rx.items(cellIdentifier: "Cell")) {
+    }
+    
+    func bind() {
+        viewModel.fetchData().bind(to: rssTable.rx.items(cellIdentifier: "Cell")) { [weak self]
             row, item, cell in
-            (cell as! MainTableViewCell).configureCell(with: item)
+            if let cell = cell as? MainTableViewCell {
+                self?.viewModel.configureCell(cell, with: item)
+            }
         }.disposed(by: disposeBag)
 
-        optionsTableView.rx.modelSelected(MainModel.self).bind { [weak self] mainModel in
-            self?.navigationController?.pushViewController(FeedDetailViewController(viewModel: self?.viewModel.getViewModel(mainModel) ?? FeedDetailViewModel()), animated: true)
+        rssTable.rx.modelSelected(MainModel.self).bind { [weak self] mainModel in
+            let vm = self?.viewModel.getViewModel(mainModel) ?? FeedDetailViewModel()
+            let vc = FeedDetailViewController(viewModel: vm)
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
         .disposed(by: disposeBag)
     }

@@ -12,11 +12,11 @@ import SnapKit
 class MainTableViewCell: UITableViewCell {
 
     var model: MainModel!
-    private var rssImageView: UIImageView!
-    private var rssTitleLabel: UILabel!
-    private var rssDescriptionLabel: UILabel!
-    private var rightChevronImageView: UIImageView!
-    private var labelStackView: UIStackView!
+    private lazy var rssImageView = UIImageView()
+    private lazy var rssTitleLabel =  initTitleLabel()
+    private lazy var rssDescriptionLabel = initDescriptionLabel()
+    private lazy var rightChevronImageView = initChevron()
+    private lazy var labelStackView =  initLabelStackView()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,35 +28,42 @@ class MainTableViewCell: UITableViewCell {
     }
 
     func setupUI() {
-        addImages()
-        addLabels()
+        addSubview(rssImageView)
+        addSubview(rightChevronImageView)
+        addSubview(labelStackView)
         makeConstraints()
     }
     
-    func addImages() {
-        rssImageView = UIImageView()
-        rightChevronImageView = UIImageView()
-        rightChevronImageView.image = UIImage(systemName: "chevron.right")
-        rightChevronImageView.tintColor = .systemGray3
-        
-        addSubview(rssImageView)
-        addSubview(rightChevronImageView)
+    func initChevron() -> UIImageView {
+        let imgView = UIImageView()
+        imgView.image = UIImage(systemName: "chevron.right")
+        imgView.tintColor = .systemGray3
+        return imgView
     }
     
-    func addLabels() {
-        rssTitleLabel = UILabel()
-        rssDescriptionLabel = UILabel()
-        rssTitleLabel.font = .boldSystemFont(ofSize: 18)
-        rssDescriptionLabel.font = .italicSystemFont(ofSize: 15)
-        rssDescriptionLabel.numberOfLines = 0
-        
-        labelStackView = UIStackView(arrangedSubviews: [rssTitleLabel, rssDescriptionLabel])
-        labelStackView.distribution = .fill
-        labelStackView.axis = .vertical
-        labelStackView.alignment = .center
-        
-        addSubview(labelStackView)
+    
+    func initTitleLabel() -> UILabel {
+        let lbl = UILabel()
+        lbl.font = .boldSystemFont(ofSize: 18)
+        return lbl
     }
+    
+    func initDescriptionLabel() -> UILabel {
+        let lbl = UILabel()
+        lbl.font = .italicSystemFont(ofSize: 15)
+        lbl.numberOfLines = 0
+        return lbl
+    }
+    
+    func initLabelStackView() -> UIStackView {
+        let stack = UIStackView(arrangedSubviews: [rssTitleLabel, rssDescriptionLabel])
+        stack.distribution = .fill
+        stack.axis = .vertical
+        stack.alignment = .center
+        return stack
+    }
+    
+   
     
     func makeConstraints() {
         rssImageView.snp.makeConstraints { make in

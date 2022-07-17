@@ -29,6 +29,10 @@ class MainViewModel: NSObject {
         }
     }
     
+    func configureCell(_ cell: MainTableViewCell, with item: MainModel) {
+        cell.configureCell(with: item)
+    }
+    
     func getViewModel(_ item: MainModel) -> FeedDetailViewModel {
         guard let url = URL(string: item.link) else {
             return FeedDetailViewModel()

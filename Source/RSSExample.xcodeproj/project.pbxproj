@@ -27,7 +27,6 @@
 		B3AB626E287CA36D006C5422 /* RSSExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AB626D287CA36D006C5422 /* RSSExampleUITestsLaunchTests.swift */; };
 		B3F7AA58288C0AE800AC1142 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7AA57288C0AE800AC1142 /* Coordinator.swift */; };
 		B3F7AA5A288C0D6F00AC1142 /* RSSBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7AA59288C0D6F00AC1142 /* RSSBaseViewController.swift */; };
-		B3F7AA5C288C1A9A00AC1142 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7AA5B288C1A9A00AC1142 /* Reachability.swift */; };
 		C387197CE53E80C11762F602 /* Pods_RSSExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA2D6F709B88F749BBA642D /* Pods_RSSExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,7 +77,6 @@
 		B3AB626D287CA36D006C5422 /* RSSExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		B3F7AA57288C0AE800AC1142 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		B3F7AA59288C0D6F00AC1142 /* RSSBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSBaseViewController.swift; sourceTree = "<group>"; };
-		B3F7AA5B288C1A9A00AC1142 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		D6A78570D418EDEF4ECDC5AA /* Pods_RSSExample_RSSExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSExample_RSSExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F49C76C17D77416F650312 /* Pods-RSSExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSExample.release.xcconfig"; path = "Target Support Files/Pods-RSSExample/Pods-RSSExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -243,7 +241,6 @@
 				B30F7B1728803E9A00EBEB8D /* MainScreen */,
 				B30F7B152880381000EBEB8D /* FeedDetail */,
 				B33A3C1F2880C177000D9370 /* Extensions */,
-				B3F7AA5D288C1AA200AC1142 /* Util */,
 				B3AB6253287CA36C006C5422 /* Assets.xcassets */,
 				B30F7B1E28804BC400EBEB8D /* rssList.json */,
 				B3AB6258287CA36C006C5422 /* Info.plist */,
@@ -267,14 +264,6 @@
 				B3AB626D287CA36D006C5422 /* RSSExampleUITestsLaunchTests.swift */,
 			);
 			path = RSSExampleUITests;
-			sourceTree = "<group>";
-		};
-		B3F7AA5D288C1AA200AC1142 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-				B3F7AA5B288C1A9A00AC1142 /* Reachability.swift */,
-			);
-			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -528,7 +517,6 @@
 				B39B77DD287DB8A100122135 /* FeedDetailViewModel.swift in Sources */,
 				B33A3C1E2880BCB6000D9370 /* String+Extension.swift in Sources */,
 				B3AB624D287CA368006C5422 /* SceneDelegate.swift in Sources */,
-				B3F7AA5C288C1A9A00AC1142 /* Reachability.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,6 +32,10 @@ class FeedDetailViewController: RSSBaseViewController {
         self.navigationItem.title = viewModel.title
         bind()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showErrorIfNotReachable()
+    }
     
     func addTable() -> UITableView {
         var table = UITableView()

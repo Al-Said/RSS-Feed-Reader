@@ -17,7 +17,7 @@ class FeedDetailViewController: RSSBaseViewController {
     private lazy var refreshControl = UIRefreshControl()
     let viewModel: IFeedDetailViewModel!
     let disposeBag = DisposeBag()
-    
+    lazy var activityIndicator = UIActivityIndicatorView(style: .large)
     init(viewModel: IFeedDetailViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -45,13 +45,14 @@ class FeedDetailViewController: RSSBaseViewController {
             make.size.equalToSuperview()
             make.center.equalToSuperview()
         }
-        
         return table
     }
     
     func bind() {
+        startActivityIndicator()
         viewModel.fetchData().bind(to: feedTable.rx.items(cellIdentifier: cellIdentifier)) {
             [weak self] row, item, cell in
+            self?.removeActivityIndicator()
             if let cell = cell as? FeedTableViewCell {
                 self?.viewModel.configureCell(cell, with: item)
             }
@@ -63,10 +64,24 @@ class FeedDetailViewController: RSSBaseViewController {
         .disposed(by: disposeBag)
     }
     
+    func startActivityIndicator() {
+        feedTable.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func removeActivityIndicator() {
+        activityIndicator.removeFromSuperview()
+    }
+    
     @objc func reloadItems() {
         viewModel.reloadItems()
         refreshControl.endRefreshing()
         if refreshControl.isRefreshing { refreshControl.endRefreshing() }
     }
+    
 }
 

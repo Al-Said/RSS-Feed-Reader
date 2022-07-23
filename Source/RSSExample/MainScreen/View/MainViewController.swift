@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class MainViewController: UIViewController {
+class MainViewController: RSSBaseViewController {
 
     private let viewModel: IMainViewModel = MainViewModel()
     private let disposeBag = DisposeBag()
@@ -28,7 +28,7 @@ class MainViewController: UIViewController {
     func initTable() -> UITableView {
         let table = UITableView()
         table.delegate = self
-        table.register(MainTableViewCell.self, forCellReuseIdentifier: "Cell")
+        table.register(MainTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         return table
     }
     
@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
     }
     
     func bind() {
-        viewModel.fetchData().bind(to: rssTable.rx.items(cellIdentifier: "Cell")) { [weak self]
+        viewModel.fetchData().bind(to: rssTable.rx.items(cellIdentifier: cellIdentifier)) { [weak self]
             row, item, cell in
             if let cell = cell as? MainTableViewCell {
                 self?.viewModel.configureCell(cell, with: item)
@@ -49,8 +49,7 @@ class MainViewController: UIViewController {
 
         rssTable.rx.modelSelected(MainModel.self).bind { [weak self] mainModel in
             let vm = self?.viewModel.getViewModel(mainModel) ?? FeedDetailViewModel()
-            let vc = FeedDetailViewController(viewModel: vm)
-            self?.navigationController?.pushViewController(vc, animated: true)
+            self?.coordinator?.openFeedDetail(vm)
         }
         .disposed(by: disposeBag)
     }
@@ -58,6 +57,6 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        120.0
+        baseRowHeight
     }
 }

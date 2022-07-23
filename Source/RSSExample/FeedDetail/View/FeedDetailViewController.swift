@@ -11,7 +11,7 @@ import FeedKit
 import RxSwift
 import RxCocoa
 
-class FeedDetailViewController: UIViewController {
+class FeedDetailViewController: RSSBaseViewController {
     
     private lazy var feedTable = addTable()
     private lazy var refreshControl = UIRefreshControl()
@@ -37,7 +37,7 @@ class FeedDetailViewController: UIViewController {
         var table = UITableView()
         refreshControl.addTarget(self, action: #selector(reloadItems), for: .valueChanged)
         table = UITableView(frame: self.view.bounds)
-        table.register(FeedTableViewCell.self, forCellReuseIdentifier: "Cell")
+        table.register(FeedTableViewCell.self, forCellReuseIdentifier: cellIdentifier)
 
         view.addSubview(table)
         table.addSubview(refreshControl)
@@ -50,7 +50,7 @@ class FeedDetailViewController: UIViewController {
     }
     
     func bind() {
-        viewModel.fetchData().bind(to: feedTable.rx.items(cellIdentifier: "Cell")) {
+        viewModel.fetchData().bind(to: feedTable.rx.items(cellIdentifier: cellIdentifier)) {
             [weak self] row, item, cell in
             if let cell = cell as? FeedTableViewCell {
                 self?.viewModel.configureCell(cell, with: item)

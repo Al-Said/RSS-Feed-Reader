@@ -10,16 +10,16 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var mainCoordinator: ICoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
-        let firstVC = MainViewController()
-        firstVC.modalPresentationStyle = .fullScreen
-        let navigationVC = UINavigationController(rootViewController: firstVC)
-        self.window?.rootViewController = navigationVC
+        let navController = UINavigationController()
+        mainCoordinator = MainCoordinator(navigationController: navController)
+        mainCoordinator?.start()
+        self.window?.rootViewController = navController
         self.window?.makeKeyAndVisible()
     }
 

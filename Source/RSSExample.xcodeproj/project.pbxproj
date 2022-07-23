@@ -25,6 +25,8 @@
 		B3AB6262287CA36D006C5422 /* RSSExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AB6261287CA36D006C5422 /* RSSExampleTests.swift */; };
 		B3AB626C287CA36D006C5422 /* RSSExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AB626B287CA36D006C5422 /* RSSExampleUITests.swift */; };
 		B3AB626E287CA36D006C5422 /* RSSExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3AB626D287CA36D006C5422 /* RSSExampleUITestsLaunchTests.swift */; };
+		B3F7AA58288C0AE800AC1142 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7AA57288C0AE800AC1142 /* Coordinator.swift */; };
+		B3F7AA5A288C0D6F00AC1142 /* RSSBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F7AA59288C0D6F00AC1142 /* RSSBaseViewController.swift */; };
 		C387197CE53E80C11762F602 /* Pods_RSSExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FA2D6F709B88F749BBA642D /* Pods_RSSExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,8 @@
 		B3AB6267287CA36D006C5422 /* RSSExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RSSExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3AB626B287CA36D006C5422 /* RSSExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSExampleUITests.swift; sourceTree = "<group>"; };
 		B3AB626D287CA36D006C5422 /* RSSExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B3F7AA57288C0AE800AC1142 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		B3F7AA59288C0D6F00AC1142 /* RSSBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSBaseViewController.swift; sourceTree = "<group>"; };
 		D6A78570D418EDEF4ECDC5AA /* Pods_RSSExample_RSSExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSSExample_RSSExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F49C76C17D77416F650312 /* Pods-RSSExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSExample.release.xcconfig"; path = "Target Support Files/Pods-RSSExample/Pods-RSSExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,6 +163,8 @@
 			children = (
 				B3AB624A287CA368006C5422 /* AppDelegate.swift */,
 				B3AB624C287CA368006C5422 /* SceneDelegate.swift */,
+				B3F7AA57288C0AE800AC1142 /* Coordinator.swift */,
+				B3F7AA59288C0D6F00AC1142 /* RSSBaseViewController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -503,8 +509,10 @@
 				B30F7B212880543100EBEB8D /* MainTableViewCell.swift in Sources */,
 				B30F7B1B28803ED200EBEB8D /* MainViewModel.swift in Sources */,
 				B3AB624F287CA368006C5422 /* FeedDetailViewController.swift in Sources */,
+				B3F7AA5A288C0D6F00AC1142 /* RSSBaseViewController.swift in Sources */,
 				B3AB624B287CA368006C5422 /* AppDelegate.swift in Sources */,
 				B30F7B11287F445100EBEB8D /* FeedTableViewCell.swift in Sources */,
+				B3F7AA58288C0AE800AC1142 /* Coordinator.swift in Sources */,
 				B30F7B1928803EB900EBEB8D /* MainViewController.swift in Sources */,
 				B39B77DD287DB8A100122135 /* FeedDetailViewModel.swift in Sources */,
 				B33A3C1E2880BCB6000D9370 /* String+Extension.swift in Sources */,
